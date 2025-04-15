@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Edit Student</h2>
+        <form action="{{ url_for('edit', id=student['id']) }}" method="POST">
+            <input type="hidden" name="student_id" value="{{ student['id'] }}">
+            <div class="mb-3">
+                <label for="fname" class="form-label"><strong>Name</strong></label>
+                <input type="text" name="fname" class="form-control" id="fname" value="{{ student['fname'] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label"><strong>Email</strong></label>
+                <input type="email" name="email" class="form-control" id="email" value="{{ student['email'] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="bdate" class="form-label"><strong>Birthday</strong></label>
+                <input type="date" name="bdate" class="form-control" id="bdate" value="{{ student['bdate'] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="gender"><strong>Gender</strong></label><br>
+                <input type="radio" name="gender" id="gender-male" value="Male" {% if student['gender'] == 'Male' %}checked{% endif %} required>
+                <label for="gender-male">Male</label>
+                <input type="radio" name="gender" id="gender-female" value="Female" {% if student['gender'] == 'Female' %}checked{% endif %} required>
+                <label for="gender-female">Female</label>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-success">Update</button>
+                <a href="{{ url_for('index') }}" class="btn btn-secondary ms-3">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
